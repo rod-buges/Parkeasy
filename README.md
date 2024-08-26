@@ -1,5 +1,5 @@
-#Parkeasy 🚗🅿️
-###Parkeasy é uma aplicação web que facilita a busca e reserva de estacionamentos de maneira simples e eficiente. Desenvolvida com o objetivo de proporcionar aos usuários uma experiência prática na gestão de reservas de estacionamento, a aplicação integra um mapa ###interativo onde os usuários podem visualizar diferentes estacionamentos, acessar informações detalhadas e realizar reservas diretamente através da interface.
+Parkeasy 🚗🅿️
+Parkeasy é uma aplicação web que facilita a busca e reserva de estacionamentos de maneira simples e eficiente. Desenvolvida com o objetivo de proporcionar aos usuários uma experiência prática na gestão de reservas de estacionamento, a aplicação integra um mapa interativo onde os usuários podem visualizar diferentes estacionamentos, acessar informações detalhadas e realizar reservas diretamente através da interface.
 
 Funcionalidades Principais
 Mapa Interativo 🗺️: Explore um mapa que exibe a localização dos estacionamentos disponíveis. Ao clicar em um estacionamento, um pop-up fornece informações detalhadas, como nome, endereço, vagas disponíveis, e preços.
