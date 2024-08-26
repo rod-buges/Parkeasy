@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Criar Estacionamento</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900&family=League+Gothic&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: #FFD000;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .navbar {
+      font-family: 'League Gothic', sans-serif;
+      background-color: #FFD000;
+      padding: 0.5rem 1rem;
+    }
+
+    .navbar-brand img {
+      max-height: 2.5rem;
+      margin-right: 0.5rem;
+    }
+
+    .navbar-brand span {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: black;
+    }
+
+    .navbar-item button {
+      background-color: #ffffff;
+      border: none;
+      border-radius: 50%;
+      padding: 11px 13px;
+      margin-left: 10px;
+      cursor: pointer;
+      color: #000;
+    }
+
+    .navbar-item button:hover {
+      background-color: #e6bf00;
+    }
+
+    .navbar-item button i {
+      font-size: 1.2rem;
+    }
+
+    .navbar-brand .fa-square-parking {
+      font-size: 2rem;
+      margin-right: 0.5rem;
+      color: black;
+    }
+
+    .navbar-search {
+      text-decoration: none;
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+    .navbar-search input {
+      text-decoration: none;
+      color: #000;
+      margin-top: 9px;
+      width: 100%;
+      height: 70%;
+      padding: 8px;
+      border-radius: 50px;
+      border: none;
+    }
+
+    .content {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    form {
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 20px;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-family: 'Lato', sans-serif;
+      color: #4a4a4a;
+      text-align: center;
+      font-size: 10px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    form label {
+      font-weight: bold;
+      margin-bottom: 5px;
+      display: block;
+      color: #000;
+    }
+
+    form input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 20px;
+      border: 1px solid #ddd;
+    }
+
+    form button {
+      width: 100%;
+      background-color: #FFD000;
+      color: #000;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-top: 30px;
+    }
+
+    form button:hover {
+      background-color: #e6bf00;
+    }
+
+    form a {
+      display: inline-block;
+      margin-top: 10px;
+      color: #000;
+      text-decoration: none;
+    }
+
+    form a:hover {
+      text-decoration: underline;
+    }
+
+  </style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">
+      <i class="fas fa-square-parking"></i>
+      <span class="logo">PARKEASY</span>
+    </a>
+  </div>
+
+  <div class="navbar-search">
+    <input type="text" placeholder="Buscar estacionamentos...">
+  </div>
+
+  <div class="navbar-end">
+    <div class="navbar-item">
+      <button onclick="window.location.href='/parking/new';"><i class="fa-solid fa-plus"></i></button>
+    </div>
+    <div class="navbar-item">
+      <button onclick="window.location.href='/reservations';"><i class="fa-solid fa-book"></i></button>
+    </div>
+    <div class="navbar-item">
+      <button><i class="fas fa-user"></i></button>
+    </div>
+  </div>
+</nav>
+
+<div class="content">
+  <form action="#" th:action="@{/parking}" th:object="${parking}" method="post">
+    <h1 style="font-size: 20px">Criar Novo Estacionamento</h1>
+    <label for="name">Nome:</label>
+    <input type="text" id="name" th:field="*{name}" required />
+
+    <label for="address">Endereço:</label>
+    <input type="text" id="address" th:field="*{address}" required />
+
+    <label for="price1">Preço 30min:</label>
+    <input type="text" id="price1" th:field="*{price1}" step="0.01" required />
+
+    <label for="price2">Preço 1H:</label>
+    <input type="text" id="price2" th:field="*{price2}" step="0.01" required />
+
+    <label for="price3">Preço 2H:</label>
+    <input type="text" id="price3" th:field="*{price3}" step="0.01" required />
+
+    <label for="spaces">Espaços:</label>
+    <input type="number" id="spaces" th:field="*{spaces}" required />
+
+    <label for="latitude">Latitude:</label>
+    <input type="text" id="latitude" th:field="*{latitude}" required />
+
+    <label for="longitude">Longitude:</label>
+    <input type="text" id="longitude" th:field="*{longitude}" required />
+
+    <button type="submit">Salvar</button>
+    <a href="/parking">Voltar à Lista</a>
+  </form>
+</div>
+
+</body>
+</html>
